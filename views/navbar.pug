@@ -1,0 +1,21 @@
+doctype html
+html
+    head
+        title= title
+        //- link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/stylesheets/bootstrap/css/bootstrap.min.css')
+    body
+        nav.navbar.navbar-expand-lg.navbar-light.bg-light
+            a.navbar-brand(href="/") Inicio
+            button.navbar-toggler(type="button" data-toggle="collapse" data-target="#mainMenuParparkinglot" aria-controls="mainMenuParparkinglot" aria-expanded="false" aria-label="Toggle navigation")
+                span.navbar-toggler-icon
+
+            .collapse.navbar-collapse#mainMenuParparkinglot
+                ul.navbar-nav.mr-auto
+                    li.nav-item.active
+                        a.nav-link.text-primary(href="/") Cambiar/Añadir precios
+                    li.nav-item.active
+                        a.nav-link.text-primary(href="/") Configuracion usuario
+        block navbar
+
+    script(src="/stylesheets/bootstrap/js/bootstrap.min.js")
