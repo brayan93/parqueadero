@@ -7,6 +7,8 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var registroRouter = require('./routes/registro');
+var salidaRouter = require('./routes/salida');
+var precioRouter = require('./routes/precio');
 
 const sequelize = require('./config/DB');
 
@@ -29,6 +31,7 @@ const db = require('./config/DB');
 
 // Modelos
 require('./model/Registro');
+require('./model/Precio');
 
 db.sync()
     .then(() => {
@@ -41,6 +44,8 @@ db.sync()
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/registro', registroRouter);
+app.use('/salida', salidaRouter);
+app.use('/precio', precioRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

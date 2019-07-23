@@ -1,0 +1,25 @@
+extends ../layout
+
+block content
+    .container
+        .row
+            .col-12
+                a.btn.btn-primary.float-right(href="/precio/form") Agregar
+            .col-12
+                table.table.table-bordered.w-auto
+                    tr
+                        th.w-auto(scope="col") Nombre
+                        th.w-auto(scope="col") Precio
+                        th.w-auto(scope="col") Acciones
+                    if registros
+                        each reg in registros
+                            tr
+                                td #{reg.nombre}
+                                td $#{reg.precio}
+                                td.w-100
+                                    a.btn.btn-primary(href=`/precio/editar/${reg.url}`) Editar
+                    else
+                        tr
+                            td No se encuentran registros
+                            td
+                            td

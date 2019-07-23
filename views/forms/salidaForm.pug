@@ -1,0 +1,35 @@
+extends ../layout
+
+block content
+    .container
+        .row
+            .col-12
+                form(action="/salida/form" method="post")
+                    .form-group
+                        label(for="placa") Placa
+                        input.form-control(type="text" name="placa" placeholder="Ingresa placa del vehiculo" required)
+                        small(id="placalHelp" class="form-text text-muted") Ingresa placa del vehiculo
+                    button(type="submit", class="btn btn-primary") Buscar
+            .col-12
+                if registros
+                    if registros.length > 0
+                        table.table.table-bordered
+                            tr
+                                th Placa
+                                th Hora
+                                th Fecha
+                                th Estado
+                                th Acciones
+                            each reg in registros
+                                tr
+                                    td #{reg.placa}
+                                    td #{reg.horaEntrada.getHours()}:#{reg.horaEntrada.getMinutes()}:#{reg.horaEntrada.getSeconds()}
+                                    td #{reg.horaEntrada.getFullYear()}-#{reg.horaEntrada.getMonth()}-#{reg.horaEntrada.getDate()}
+                                    td #{reg.estado === 0 ? 'Entrada' : 'Salida'}
+                                    td.btn-group.text-center.w-100
+                                        a.btn.btn-success(href=`/salida/pagar/${reg.url}`) Pagar
+                                        a.btn.btn-warning(href=`/salida/salida/${reg.url}`) Salida
+                                        a.btn.btn-danger(href=`/salida/eliminar/${reg.url}`) Eliminar
+                    else
+                        .alert.alert-info No se encontraron registros
+                                

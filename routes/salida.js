@@ -4,8 +4,8 @@ var router = express.Router();
 const Registro = require('../model/Registro');
 
 router.get('/form', (req, res, next) => {
-    res.render('forms/registroForm', {
-        title: 'Entrada'
+    res.render('forms/salidaForm', {
+        title: 'Salida'
     });
 });
 
@@ -28,11 +28,18 @@ router.get('/list', async (req, res, next) => {
 router.post('/form', async (req, res, next) => {
     const { placa } = req.body;
     const d = new Date();
-    const resultado = await Registro.create({ placa, horaEntrada: d });
+    const resultado = await Registro.findAll({
+        where: {
+            placa,
+            estado: 0,
+        }
+    });
     if (!resultado) {
-        res.redirect('/registro/form');
+        res.redirect('/salida/form');
     } else {
-        res.redirect('/registro/form');
+        res.render('forms/salidaForm', {
+            registros: resultado
+        });
     }
 });
 

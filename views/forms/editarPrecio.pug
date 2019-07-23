@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+    if precio
+        .container
+            .row
+                .col-12
+                    form(action=`/precio/editar/${precio.url}` method="post")
+                        .form-group.row
+                            .col-6
+                                .input-group
+                                    .input-group-prepend
+                                        span.input-group-text Precio
+                                    input.form-control(type="number" name="precio" placeholder="Ingresa precio" value=precio.precio required)
+                                    .input-group-append
+                                        button(type="submit", class="input-group-text") Guardar

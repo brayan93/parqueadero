@@ -8,11 +8,15 @@ block content
                     tr
                         th Placa
                         th Hora
+                        th Fecha
+                        th Estado
                     if registros
                         each reg in registros
                             tr
                                 td #{reg.placa}
-                                td #{reg.horaEntrada}
+                                td #{reg.horaEntrada.getHours()}:#{reg.horaEntrada.getMinutes()}:#{reg.horaEntrada.getSeconds()}
+                                td #{reg.horaEntrada.getFullYear()}-#{reg.horaEntrada.getMonth()}-#{reg.horaEntrada.getDate()}
+                                td #{reg.estado === 0 ? 'Entrada' : 'Salida'}
                     else
                         tr
                             td No se encuentran registros

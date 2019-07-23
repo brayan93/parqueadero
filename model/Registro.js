@@ -13,15 +13,17 @@ const Registro = db.define('registros', {
     placa: Sequelize.STRING,
     url: Sequelize.STRING,
     horaEntrada: {
-        type: Sequelize.TEXT,
+        type: Sequelize.DATE,
+    },
+    estado: {
+        type: Sequelize.INTEGER(1),
+        defaultValue: 0
     }
 }, {
     hooks: {
         beforeCreate(registro) {
             const url = slug(registro.placa).toLowerCase();
             registro.url = `${url}-${shortid.generate()}`;
-            const d = new Date();
-            registro.horaEntrada = d.getTime();
         }
     }
 });
